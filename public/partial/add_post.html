@@ -1,0 +1,78 @@
+
+<div class="main">
+    <div class="container">
+        <div class="row margin-top-40">
+            <div class="col-md-12 col-sm-12">
+				<div class="content-page">
+					<style>
+						.form-control.ng-touched.ng-invalid {
+							border-color: #ebccd1;
+						}
+						img.thumb {
+							max-width: 50%;
+							max-height: 250px;
+						}
+					</style>
+
+					<div class="content-header">
+					    <h1>Flapper News</h1>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-9 col-sm-12">
+							<div class="add-post padding-top-40">
+								<h3>Add a Post</h3>
+								<form name="form" novalidate role="form" ng-submit="addNewPost(form)" encType="multipart/form-data">
+									<div class="form-group">
+										<label class="control-label">Title</label>
+										<input class="form-control" name="title" ng-model="title" type="text" placeholder="Title" ng-required="true">
+										<span ng-show="form.title.$touched && form.title.$error.required" 
+											class="help-block help-block-error" style="color: #a94442">This field is required.</span>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Related Link</label>
+										<input class="form-control" name="link" ng-model="link" type="text" placeholder="Related Link" ng-required="true">
+										<span ng-show="form.link.$touched && form.link.$error.required" 
+											class="help-block help-block-error" style="color: #a94442">This field is required.</span>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Content</label>
+										<textarea class="form-control" name="content" ng-model="content" rows="8" placeholder="Post Content" ng-required="true"></textarea>
+										<span ng-show="form.content.$touched && form.content.$error.required" 
+											class="help-block help-block-error" style="color: #a94442">This field is required.</span>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Featured Image</label>
+										<input 
+											type="file" 
+											ngf-select 
+											ng-model="featured" 
+											name="featured" 
+											ngf-pattern="'image/*'"
+								            accept="image/*" 
+								            ngf-max-size="20MB" 
+								            ng-required="true"
+								            />
+
+										<span ng-show="form.content.$touched && form.featured.$error.required" class="help-block help-block-error" 
+											style="color: #a94442">This field is required.</span>
+										<span class="help-block help-block-error" ng-show="form.featured.$error.maxSize" 
+											style="color: #a94442">File too large {{featured.size / 1000000|number:1}}MB: max 20M</span>
+										<img ng-show="form.featured.$valid" ngf-thumbnail="featured" class="thumb"> 
+										<button type="button" class="btn btn-warning" ng-click="featured = null" ng-show="featured" style="vertical-align: bottom">Remove</button>
+									</div>
+									<p>
+										<button class="btn btn-primary" type="submit" ng-disabled="!form.$valid">Publish</button>
+										<a href="#!/home" class="btn btn-info">Go To Home!</a>
+									</p>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
